@@ -1,0 +1,14 @@
+<h1>Edit Subreddit</h1>
+<form action="<%= subreddit_url(@subreddit) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= auth_token %>
+  <label for="title">Title
+    <input type="text" name="subreddit[title]" value="<%= @subreddit.title %>">
+  </label>
+  <br>
+  <label for="description">Description
+    <textarea name="subreddit[description]"><%= @subreddit.description %></textarea>
+  </label>
+  <br>
+  <input type="submit" value="Update Subreddit">
+</form>

@@ -1,0 +1,28 @@
+<h1><%= @subreddit.title %></h1>
+
+<%= link_to "Create Post", new_post_url %>
+
+<article>
+  <% @subreddit.posts.each do |post| %>
+
+  <div>
+    <% if post.url.length > 0 %>
+      <%= link_to post.title, post.url %>
+    <% else %>
+      <%= link_to post.title, post_url(post) %>
+    <% end %>
+    <%= link_to "Comments", post_url(post) %>
+  </div>
+
+  <% end %>
+</article>
+
+<aside>
+  <h3>Moderators</h3>
+  <% @subreddit.mod_users.each do |moderator| %>
+    <%= moderator.username %><br>
+  <% end %>
+  <% if @subreddit.mod_users.include?(current_user) %>
+    <%= link_to "Add Moderator", new_subreddit_moderator_url(@subreddit) %>
+  <% end %>
+</aside>

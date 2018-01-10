@@ -1,0 +1,22 @@
+<h1>Create Post</h1>
+<form action="<%= posts_url %>" method="post">
+  <%= auth_token %>
+  <label for="title">Title
+    <input type="text" name="post[title]" value="<%= @post.title %>">
+  </label>
+  <br>
+  <label for="url">URL
+    <input type="text" name="post[url]" value="<%= @post.url %>">
+  </label>
+  <br>
+  <label for="content">Content
+    <textarea name="post[content]"><%= @post.content %></textarea>
+  </label>
+  <br>
+  <% @subreddits.each do |subreddit| %>
+    <label for=""><%= subreddit.title %>
+      <input type="checkbox" name="post[subreddit_ids][]" value="<%= subreddit.id %>">
+    </label>
+  <% end %>
+  <input type="submit" value="Create Post">
+</form>

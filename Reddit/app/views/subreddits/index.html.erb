@@ -1,0 +1,7 @@
+<h1>Subreddit Index</h1>
+
+<%= link_to "Create a Subreddit", new_subreddit_url %>
+
+<% @subreddits.each do |subreddit| %>
+  <%= link_to subreddit.title, subreddit_url(subreddit) %>
+<% end %>

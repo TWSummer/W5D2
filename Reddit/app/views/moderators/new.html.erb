@@ -1,0 +1,9 @@
+Add Moderator
+
+<form action="<%= subreddit_moderators_url(@sub_id) %>" method="post">
+  <label>Username
+    <%= auth_token %>
+    <input type="text" name="username">
+    <input type="submit"value="Add Moderator">
+  </label>
+</form>

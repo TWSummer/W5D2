@@ -1,0 +1,29 @@
+<h1><%= @post.title %></h1>
+<%= link_to @post.subreddits.first.title, subreddit_url(@post.subreddits.first) %>
+<%= @post.user.username %>
+<%= link_to @post.url, @post.url %>
+<%= @post.content %>
+
+
+<% if @post.user == current_user %>
+  <%= link_to "Edit Post", edit_post_url(@post) %>
+  <%= button_to "Delete Post", post_url(@post), method: :delete %>
+<% end %>
+
+<h2>Comments</h2>
+<form action="<%= post_comments_url(@post) %>" method="post">
+  <%= auth_token %>
+  <label>Comment
+    <textarea name="comment[content]" rows="8" cols="80"></textarea>
+  </label>
+  <input type="submit" value="Add Comment">
+</form>
+
+<% parents = @comments.select { |comment| comment.parent_id.nil? } %> <!--do |comment| %> -->
+<% parents.each do |comment| %>
+  <div>
+    <%= comment.content %>
+    <%= comment.author.username %>
+    <%= link_to "Reply", comment_url(comment) %>
+  </div>
+<% end %>

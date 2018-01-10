@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reddit</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <header>
+      <%= link_to "Reddit Home Page", subreddits_url %>
+
+      <% if logged_in? %>
+        <%= current_user.username %>
+      <% end %>
+      <% if flash[:errors] %>
+        <%= flash[:errors].join("<br>").html_safe %>
+      <% end %>
+    </header>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<h1>Create Subreddit</h1>
+<form action="<%= subreddits_url %>" method="post">
+  <%= auth_token %>
+  <label for="title">Title
+    <input type="text" name="subreddit[title]" value="<%= @subreddit.title %>">
+  </label>
+  <br>
+  <label for="description">Description
+    <textarea name="subreddit[description]"><%= @subreddit.description %></textarea>
+  </label>
+  <br>
+  <input type="submit" value="Create Subreddit">
+</form>
